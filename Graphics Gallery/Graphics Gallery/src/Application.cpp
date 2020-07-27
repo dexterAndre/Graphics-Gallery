@@ -4,12 +4,14 @@
 #include <GLFW/glfw3.h>
 
 #include "Renderer.h"
+#include "GraphicsStatics.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "imgui/imgui_impl_glfw.h"
 
 #include "tests/TestClearColor.h"
+#include "tests/TestRectangle.h"
 
 
 
@@ -64,15 +66,15 @@ int main(void)
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init((char*)glGetString(GL_NUM_SHADING_LANGUAGE_VERSIONS));
 
-        test::TestClearColor test;
+        test::TestRectangle test;
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
-            renderer.Clear();
+            renderer.Clear(GS::m_CLEARCOLOR);
 
             test.OnUpdate(0.0f);
-            test.OnRender();
+            test.OnRender(&renderer);
 
             /* GUI setup */
             ImGui_ImplOpenGL3_NewFrame();

@@ -19,6 +19,6 @@ class Renderer
 private:
 
 public:
-    void Clear() const;
+    void Clear(const float color[4] = {}) const;
     void Draw(const VertexArray& VAO, const IndexBuffer& EBO, const Shader& shader) const;
 };
